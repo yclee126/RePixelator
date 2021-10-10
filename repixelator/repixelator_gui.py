@@ -1,4 +1,4 @@
-# GUI for RePixelator v1.0
+# GUI for RePixelator v1.0.1
 # Works on python 3.4 or higher
 
 try:
@@ -25,8 +25,6 @@ if os.name == 'nt':
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID('RePixelator.'+__version__) # taskbar icon fix
     ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0) # close the cmd
 
-os.chdir(os.path.dirname(os.path.abspath(__file__))) # set cwd to script directory, not the cmd.
-
 
 class RedirectStdoutToTextCtrl():
     def __init__(self, widget):
@@ -44,7 +42,7 @@ class RedirectStdoutToTextCtrl():
 class GUI(wx.Frame):
     def __init__(self, parent, id, title):
         wx.Frame.__init__(self, parent, id, title)
-        self.SetIcon(wx.Icon('icon.ico'))
+        self.SetIcon(wx.Icon(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'icon.ico')))
         
         self.panel = wx.Panel(self)
         
